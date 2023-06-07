@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-str = "Holberton School"
-print(str * 3)
 
-print(str[0:9])
+# Set the value of the variable 'str' to "Holberton School"
+str = "Holberton School"
+
+# Print the concatenation of 'str' three times using string formatting
+print('{}{}{}'.format(str, str, str))
+
+# Print the first 9 characters of 'str' using string formatting
+print('{:.9}'.format(str))
