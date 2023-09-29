@@ -4,28 +4,19 @@ Python script that takes 2 arguments in order to solve this challenge.
 
 Usage: ./100-github_commits.py <repository name> <repository owner>
 """
+from sys import argv
 import requests
-import sys
+
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: ./100-github_commits.py <repository_name> <owner_name>")
-        sys.exit(1)
-
-    repository_name = sys.argv[1]
-    owner_name = sys.argv[2]
-    url = f"https://api.github.com/repos/{owner_name}/{repository_name}/commits"
+    url = "https://api.github.com/repos/{}/{}/commits".format(argv[2], argv[1])
+    req = requests.get(url)
+    commits = req.json()
 
     try:
-        response = requests.get(url)
-        commits = response.json()
-        
-        if response.status_code == 200:
-            for commit in commits[:10]:  # Get the most recent 10 commits
-                sha = commit.get("sha")
-                author_name = commit.get("commit").get("author").get("name")
-                print(f"{sha}: {author_name}")
-        else:
-            print("Error: Unable to fetch commits")
-    except requests.exceptions.RequestException as e:
-        print(f"Request Exception: {e}")
+        for index in range(10):
+            print("{}: {}".format(
+                commits[index].get("sha"),
+                commits[index].get("commit").get("author").get("name")))
+    except IndexError:
+        pass
