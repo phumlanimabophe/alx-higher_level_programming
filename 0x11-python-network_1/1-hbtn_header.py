@@ -8,10 +8,9 @@ Usage: ./1-hbtn_header.py <URL>
 from sys import argv
 from urllib.request import Request, urlopen
 
-
 if __name__ == "__main__":
-    url = argv[1]
-    req = Request(url)
+    custom_url = argv[1]
+    custom_request = Request(custom_url)
 
-    with urlopen(req) as response:
-        print(dict(response.headers).get("X-Request-Id"))
+    with urlopen(custom_request) as custom_response:
+        print(dict(custom_response.headers).get("X-Request-Id"))
