@@ -10,12 +10,13 @@ from sys import argv
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
+
 if __name__ == "__main__":
-    custom_url = argv[1]
-    custom_request = Request(custom_url)
+    url = argv[1]
+    req = Request(url)
 
     try:
-        with urlopen(custom_request) as custom_response:
-            print(custom_response.read().decode("ascii"))
+        with urlopen(req) as response:
+            print(response.read().decode("ascii"))
     except HTTPError as e:
         print("Error code: {}".format(e.code))

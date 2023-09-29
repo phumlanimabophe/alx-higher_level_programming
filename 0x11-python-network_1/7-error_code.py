@@ -9,11 +9,12 @@ Usage: ./7-error_code.py <URL>
 from sys import argv
 import requests
 
-if __name__ == "__main__":
-    custom_url = argv[1]
-    custom_request = requests.get(custom_url)
 
-    if custom_request.status_code >= 400:
-        print("Error code: {}".format(custom_request.status_code))
+if __name__ == "__main__":
+    url = argv[1]
+    req = requests.get(url)
+
+    if req.status_code >= 400:
+        print("Error code: {}".format(req.status_code))
     else:
-        print(custom_request.text)
+        print(req.text)

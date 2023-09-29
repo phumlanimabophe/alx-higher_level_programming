@@ -8,8 +8,9 @@ Usage: ./5-hbtn_header.py <URL>
 import requests
 from sys import argv
 
-if __name__ == "__main__":
-    custom_url = argv[1]
-    custom_request = requests.get(custom_url)
 
-    print(custom_request.headers.get("X-Request-Id"))
+if __name__ == "__main__":
+    url = argv[1]
+    req = requests.get(url)
+
+    print(req.headers.get("X-Request-Id"))
